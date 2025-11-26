@@ -2,7 +2,23 @@ const postsList = require("../data/posts");
 
 const index = (req, res) => {
 	// res.send("Lista dei post");
-	res.json(postsList);
+	// res.json(postsList);
+
+	let filteredList = postsList;
+
+	if (req.query.tag) {
+		filteredList = postsList.filter((post) =>
+			post.tags
+				.map((t) => t.toLowerCase())
+				.includes(req.query.tag.toLowerCase()),
+		);
+	}
+
+	// if (req.query.id) {
+	// 	filteredList = postsList.filter((post) => post.id === Number(req.query.id));
+	// }
+
+	res.json(filteredList);
 };
 
 const show = (req, res) => {
