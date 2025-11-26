@@ -23,7 +23,13 @@ const index = (req, res) => {
 
 const show = (req, res) => {
 	// res.send(`Visualizzazione post: ${req.params.id}`);
-	res.json(postsList.find((item) => item.id === Number(req.params.id)));
+	const found = postsList.find((item) => item.id === Number(req.params.id));
+
+	if (!found) {
+		res.status(404).json({ error: true, message: "Not Found!" });
+	}
+
+	res.json(found);
 };
 
 const store = (req, res) => {
