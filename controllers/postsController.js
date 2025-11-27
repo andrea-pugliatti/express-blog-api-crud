@@ -33,7 +33,13 @@ const show = (req, res) => {
 };
 
 const store = (req, res) => {
-	res.send("Creato un nuovo post");
+	const newPost = {
+		id: Date.now(),
+		...req.body,
+	};
+	postsList.push(newPost);
+	console.log(newPost);
+	res.status(201).json(newPost);
 };
 
 const update = (req, res) => {
