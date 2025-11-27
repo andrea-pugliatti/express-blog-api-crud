@@ -43,6 +43,16 @@ const store = (req, res) => {
 };
 
 const update = (req, res) => {
+	const updated = req.body;
+	const found = postsList.find((post) => post.id === Number(req.params.id));
+
+	found.title = updated.title;
+	found.image = updated.image;
+	found.content = updated.content;
+	found.tags = updated.tags;
+
+	console.log(found);
+
 	res.send(`Modifica interamente post: ${req.params.id}`);
 };
 
