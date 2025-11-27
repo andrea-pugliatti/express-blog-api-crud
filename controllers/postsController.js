@@ -61,6 +61,20 @@ const update = (req, res) => {
 };
 
 const modify = (req, res) => {
+	const updated = req.body;
+	const found = postsList.find((post) => post.id === Number(req.params.id));
+
+	if (!found) {
+		res.status(404).json({ error: true, message: "Not Found!" });
+	}
+
+	found.title = updated.title || found.title;
+	found.image = updated.image || found.image;
+	found.content = updated.content || found.content;
+	found.tags = updated.tags || found.tags;
+
+	console.log(found);
+
 	res.send(`Modifica parzialemente post: ${req.params.id}`);
 };
 
