@@ -46,6 +46,10 @@ const update = (req, res) => {
 	const updated = req.body;
 	const found = postsList.find((post) => post.id === Number(req.params.id));
 
+	if (!found) {
+		res.status(404).json({ error: true, message: "Not Found!" });
+	}
+
 	found.title = updated.title;
 	found.image = updated.image;
 	found.content = updated.content;
