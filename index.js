@@ -20,6 +20,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
+	// fabio.func();
 	res.send("Main route");
 });
 
