@@ -3,6 +3,7 @@ const express = require("express");
 const postsRouter = require("./routers/posts");
 
 const notFound = require("./middlewares/notFound");
+const errorsHandler = require("./middlewares/errorsHandler");
 
 const app = express();
 
@@ -24,4 +25,5 @@ app.get("/", (req, res) => {
 
 app.use("/posts", postsRouter);
 
+app.use(errorsHandler);
 app.use(notFound);
