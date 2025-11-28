@@ -1,5 +1,8 @@
 const express = require("express");
+
 const postsRouter = require("./routers/posts");
+
+const notFound = require("./middlewares/notFound");
 
 const app = express();
 
@@ -20,3 +23,5 @@ app.get("/", (req, res) => {
 });
 
 app.use("/posts", postsRouter);
+
+app.use(notFound);
